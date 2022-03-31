@@ -7,3 +7,11 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(
   `Server is running on ${PORT}`,
 ));
+
+
+// paginação dinamica 
+// offset
+// cadastro
+// user
+// test
+// BONUS => DOCKER, CI/CD, LIMITER

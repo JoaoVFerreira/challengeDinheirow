@@ -12,14 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const pokemonModel_1 = __importDefault(require("../database/models/pokemonModel"));
-class pokemonsService {
-    constructor() { }
-    listAll() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const pokemons = yield pokemonModel_1.default.findAll();
-            return pokemons;
+const usersService_1 = __importDefault(require("../services/usersService"));
+class usersController {
+    constructor() {
+        this.registerUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                this.userService.registerUser(req.body);
+                return res.status(201).json({ message: 'User registered succesfull' });
+            }
+            catch (e) {
+                next(e);
+            }
         });
+        this.userService = new usersService_1.default();
     }
 }
-exports.default = pokemonsService;
+exports.default = usersController;

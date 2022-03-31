@@ -8,7 +8,8 @@ export default class pokemonsController {
     this.pokemonsService = new PokemonsService()
   }
 
-  listAll = async (_req: Request, res: Response, next: NextFunction) => {
+  public listAll = async (_req: Request, res: Response, next: NextFunction)
+    : Promise<Response | void> => {
     try {
       const allPokemons = await this.pokemonsService.listAll();
       
