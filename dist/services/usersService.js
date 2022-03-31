@@ -20,5 +20,11 @@ class usersService {
             yield userModel_1.default.create(user);
         });
     }
+    login(user) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email } = user;
+            return userModel_1.default.findOne({ where: { email } });
+        });
+    }
 }
 exports.default = usersService;

@@ -22,7 +22,7 @@ export default class pokemonsController {
   public searchByName = async (req: Request, res: Response, next: NextFunction)
     : Promise<Response | void> => {
     try {
-      const pokemonName = req.params;
+      const pokemonName = req.params.search;
 
       if (!pokemonName) return res.status(200).json([])
 

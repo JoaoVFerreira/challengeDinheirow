@@ -8,7 +8,7 @@ const router = Router();
 
 const pokemonController = new pokemonsController();
 
-router.get('/', validateJWt, pokemonController.listAll);
 router.get('/:search', validateJWt, pokemonController.searchByName);
+router.get('/', validateJWt, pokemonController.listAll);
 
 export default router;

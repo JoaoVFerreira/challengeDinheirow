@@ -1,4 +1,4 @@
-import { Op } from "sequelize/types";
+import { Op } from 'sequelize';
 import pokemonModel from "../database/models/pokemonModel";
 import IPokemons from "../interfaces/allPokemons";
 

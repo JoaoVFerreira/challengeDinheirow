@@ -36,6 +36,19 @@ class usersController {
                 next(e);
             }
         });
+        this.loginUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { email } = req.body;
+                const verifyUser = yield userModel_1.default.findOne({ where: { email } });
+                if (!verifyUser)
+                    return res.status(400).json({ message: 'Invalid fields' });
+                const token = jwt.sign({ email }, JWT_SECRET, jwtConfig);
+                return res.status(200).json({ token });
+            }
+            catch (e) {
+                next(e);
+            }
+        });
         this.userService = new usersService_1.default();
     }
 }

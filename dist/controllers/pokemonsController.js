@@ -24,6 +24,20 @@ class pokemonsController {
                 next(e);
             }
         });
+        this.searchByName = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const pokemonName = req.params.search;
+                if (!pokemonName)
+                    return res.status(200).json([]);
+                const pokemon = yield this.pokemonsService.getOnePokemon(pokemonName);
+                if (!pokemon)
+                    return res.status(404).json({ message: `${pokemonName} does not exists in our DB` });
+                return res.status(200).json(pokemon);
+            }
+            catch (e) {
+                next(e);
+            }
+        });
         this.pokemonsService = new pokemonsService_1.default();
     }
 }

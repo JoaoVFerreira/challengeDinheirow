@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const sequelize_1 = require("sequelize");
 const pokemonModel_1 = __importDefault(require("../database/models/pokemonModel"));
 class pokemonsService {
     constructor() { }
@@ -19,6 +20,13 @@ class pokemonsService {
         return __awaiter(this, void 0, void 0, function* () {
             const pokemons = yield pokemonModel_1.default.findAll();
             return pokemons;
+        });
+    }
+    getOnePokemon(pokemon) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const name = pokemon;
+            const onePokemon = yield pokemonModel_1.default.findOne({ where: { Name: { [sequelize_1.Op.like]: name } } });
+            return onePokemon;
         });
     }
 }

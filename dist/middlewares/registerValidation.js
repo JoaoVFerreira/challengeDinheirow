@@ -16,8 +16,8 @@ const registerSchema_1 = __importDefault(require("../schemas/registerSchema"));
 const registerValidate = (req, _res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { error } = registerSchema_1.default.validate(req.body);
     if (error) {
-        const [code, message] = error.message.split('|');
-        const handleError = { status: Number(code), message };
+        const [status, message] = error.message.split('|');
+        const handleError = { status: Number(status), message };
         return next(handleError);
     }
     return next();
