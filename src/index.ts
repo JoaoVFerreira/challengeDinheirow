@@ -11,7 +11,7 @@ app.listen(PORT, () => console.log(
 
 // paginação dinamica 
 // offset
-// cadastro
-// user
+// cadastro OK
+// user OK
 // test
 // BONUS => DOCKER, CI/CD, LIMITER

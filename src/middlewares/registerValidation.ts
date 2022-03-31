@@ -5,8 +5,8 @@ const registerValidate = async (req: Request, _res: Response, next: NextFunction
   const { error } = registerSchema.validate(req.body);
 
   if (error) {
-    const [code, message] = error.message.split('|');
-    const handleError = { status: Number(code), message };
+    const [status, message] = error.message.split('|');
+    const handleError = { status: Number(status), message };
 
     return next(handleError);
   }

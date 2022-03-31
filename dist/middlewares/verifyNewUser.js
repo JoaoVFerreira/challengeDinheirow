@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const usersService_1 = __importDefault(require("../services/usersService"));
 const userModel_1 = __importDefault(require("../database/models/userModel"));
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = process.env;
@@ -20,23 +19,19 @@ const jwtConfig = {
     expiresIn: '1h',
     algorithm: 'HS256'
 };
-class usersController {
-    constructor() {
-        this.registerUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { email } = req.body;
-                const userAlreadyExist = yield userModel_1.default.findOne({ where: { email } });
-                if (userAlreadyExist)
-                    return res.status(409).json({ message: 'User already registered' });
-                const token = jwt.sign({ email }, JWT_SECRET, jwtConfig);
-                this.userService.registerUser(req.body);
-                return res.status(201).json({ token });
-            }
-            catch (e) {
-                next(e);
-            }
-        });
-        this.userService = new usersService_1.default();
+const verifyUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email } = req.body;
+    try {
+        const userAlreadyExist = yield userModel_1.default.findOne({ where: email });
+        if (userAlreadyExist)
+            return res.status(409).json({ message: 'User already registered' });
+        const token = jwt.sign({ email }, JWT_SECRET, jwtConfig);
+        req.token = token;
+        next();
     }
-}
-exports.default = usersController;
+    catch (e) {
+        next(e);
+    }
+    return next();
+});
+exports.default = verifyUser;

@@ -12,31 +12,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const usersService_1 = __importDefault(require("../services/usersService"));
+require('dotenv').config();
 const userModel_1 = __importDefault(require("../database/models/userModel"));
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = process.env;
-const jwtConfig = {
-    expiresIn: '1h',
-    algorithm: 'HS256'
-};
-class usersController {
-    constructor() {
-        this.registerUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { email } = req.body;
-                const userAlreadyExist = yield userModel_1.default.findOne({ where: { email } });
-                if (userAlreadyExist)
-                    return res.status(409).json({ message: 'User already registered' });
-                const token = jwt.sign({ email }, JWT_SECRET, jwtConfig);
-                this.userService.registerUser(req.body);
-                return res.status(201).json({ token });
-            }
-            catch (e) {
-                next(e);
-            }
+const jwtValidation = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const token = req.headers.authorization;
+    if (!token)
+        return res.status(401).json({ message: 'Token not found' });
+    try {
+        jwt.verify(token, JWT_SECRET, (err) => {
+            if (err)
+                res.status(401).json({ message: 'Expired or invalid token' });
         });
-        this.userService = new usersService_1.default();
+        const decode = jwt.verify(token, JWT_SECRET);
+        const user = yield userModel_1.default.findOne({ where: { email: decode.email } });
+        req.user = user;
+        next();
     }
-}
-exports.default = usersController;
+    catch (e) {
+        next(e);
+    }
+});
+exports.default = jwtValidation;
