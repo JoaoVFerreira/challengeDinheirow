@@ -1,4 +1,4 @@
 export default interface ICustomError {
-  status: number;
+  status?: number;
   message: string;
 }
