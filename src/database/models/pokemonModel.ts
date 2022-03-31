@@ -6,20 +6,20 @@ import {
   CreationOptional,
 } from 'sequelize';
 
-import db from '.';
+import database from './';
 
 class PokemonModel extends Model<InferAttributes<PokemonModel>, InferCreationAttributes<PokemonModel>> {
   declare pokemon_id: CreationOptional<number>;
 
   declare Name: CreationOptional<string>;
 
-  declare Pokedex_Number: CreationOptional<number>;
+  declare PokedexNumber: CreationOptional<number>;
 
   declare Img_name: CreationOptional<number>;
 
   declare Generation: CreationOptional<number>;
 
-  declare Evolution_Stage: CreationOptional<number>;;
+  declare EvolutionStage: CreationOptional<number>;;
 
   declare Evolved: CreationOptional<number>;;
 
@@ -81,8 +81,9 @@ PokemonModel.init(
     Name: {
       type: DataTypes.STRING,
     },
-    Pokedex_Number: {
+    PokedexNumber: {
       type: DataTypes.INTEGER,
+      field: 'Pokedex_Number'
     },
     Img_name: {
       type: DataTypes.INTEGER,
@@ -90,8 +91,9 @@ PokemonModel.init(
     Generation: {
       type: DataTypes.INTEGER,
     },
-    Evolution_Stage: {
+    EvolutionStage: {
       type: DataTypes.INTEGER,
+      field: 'Evolution_Stage'
     },
     Evolved: {
       type: DataTypes.INTEGER,
@@ -169,9 +171,9 @@ PokemonModel.init(
     },
   },
   {
-    underscored: true,
-    sequelize: db,
-    modelName: 'PokemonModel',
+    sequelize: database.connection,
+    modelName: 'Pokemons',
+    tableName: 'Pokemons',
     timestamps: false,
   },
 );

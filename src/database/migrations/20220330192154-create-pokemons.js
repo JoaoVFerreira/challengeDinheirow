@@ -11,8 +11,9 @@ module.exports = {
       Name: {
         type: Sequelize.STRING,
       },
-      Pokedex_Number: {
+      PokedexNumber: {
         type: Sequelize.INTEGER,
+        field: 'Pokedex_Number'
       },
       Img_name: {
         type: Sequelize.INTEGER,
@@ -20,8 +21,9 @@ module.exports = {
       Generation: {
         type: Sequelize.INTEGER,
       },
-      Evolution_Stage: {
+      EvolutionStage: {
         type: Sequelize.INTEGER,
+        field: 'Evolution_Stage'
       },
       Evolved: {
         type: Sequelize.INTEGER,
