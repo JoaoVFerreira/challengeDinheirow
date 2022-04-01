@@ -22,10 +22,15 @@ class pokemonsService {
             return pokemons;
         });
     }
-    getOnePokemon(pokemon) {
+    getPokemonByName(pokemon) {
         return __awaiter(this, void 0, void 0, function* () {
-            const name = pokemon;
-            const onePokemon = yield pokemonModel_1.default.findOne({ where: { Name: { [sequelize_1.Op.like]: name } } });
+            const onePokemon = yield pokemonModel_1.default.findOne({ where: { Name: { [sequelize_1.Op.like]: pokemon } } });
+            return onePokemon;
+        });
+    }
+    getPokemonByType(pokemon) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const onePokemon = yield pokemonModel_1.default.findAll({ where: { Type_1: { [sequelize_1.Op.like]: pokemon } } });
             return onePokemon;
         });
     }

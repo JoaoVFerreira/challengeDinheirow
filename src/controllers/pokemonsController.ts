@@ -8,12 +8,23 @@ export default class pokemonsController {
     this.pokemonsService = new PokemonsService()
   }
 
-  public listAll = async (_req: Request, res: Response, next: NextFunction)
+  public listAll = async (req: Request, res: Response, next: NextFunction)
     : Promise<Response | void> => {
     try {
+      const page = Number(req.query.page);
+      const limit = Number(req.query.limit);
       const allPokemons = await this.pokemonsService.listAll();
-      
-      return res.status(200).json(allPokemons);
+
+      if (page && limit) {
+        const startIndex: number = (page - 1) * limit;
+        const endIndex: number = page * limit;
+        const paginatedPokemons = allPokemons.slice(startIndex, endIndex);
+        
+        return res.status(200).json(paginatedPokemons);
+      }
+
+      return res.status(200).json(allPokemons)
+     
     } catch (e) {
       next(e)
     }
@@ -26,9 +37,27 @@ export default class pokemonsController {
 
       if (!pokemonName) return res.status(200).json([])
 
-      const pokemon = await this.pokemonsService.getOnePokemon(pokemonName)
+      const pokemon = await this.pokemonsService.getPokemonByName(pokemonName)
 
       if (!pokemon) return res.status(404).json({ message: `${pokemonName} does not exists in our DB` })
+
+      return res.status(200).json(pokemon)
+
+    } catch (e) {
+      next(e)
+    }
+  }
+
+  public searchByType = async (req: Request, res: Response, next: NextFunction)
+    : Promise<Response | void> => {
+    try {
+      const pokemonType = req.params.search;
+
+      if (!pokemonType) return res.status(200).json([])
+
+      const pokemon = await this.pokemonsService.getPokemonByType(pokemonType)
+
+      if (!pokemon) return res.status(404).json({ message: `${pokemonType} does not exists in our DB` })
 
       return res.status(200).json(pokemon)
 

@@ -15,9 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const pokemonsService_1 = __importDefault(require("../services/pokemonsService"));
 class pokemonsController {
     constructor() {
-        this.listAll = (_req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        this.listAll = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
+                const page = Number(req.query.page);
+                const limit = Number(req.query.limit);
                 const allPokemons = yield this.pokemonsService.listAll();
+                if (page && limit) {
+                    const startIndex = (page - 1) * limit;
+                    const endIndex = page * limit;
+                    const paginatedPokemons = allPokemons.slice(startIndex, endIndex);
+                    return res.status(200).json(paginatedPokemons);
+                }
                 return res.status(200).json(allPokemons);
             }
             catch (e) {
@@ -29,9 +37,23 @@ class pokemonsController {
                 const pokemonName = req.params.search;
                 if (!pokemonName)
                     return res.status(200).json([]);
-                const pokemon = yield this.pokemonsService.getOnePokemon(pokemonName);
+                const pokemon = yield this.pokemonsService.getPokemonByName(pokemonName);
                 if (!pokemon)
                     return res.status(404).json({ message: `${pokemonName} does not exists in our DB` });
+                return res.status(200).json(pokemon);
+            }
+            catch (e) {
+                next(e);
+            }
+        });
+        this.searchByType = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const pokemonType = req.params.search;
+                if (!pokemonType)
+                    return res.status(200).json([]);
+                const pokemon = yield this.pokemonsService.getPokemonByType(pokemonType);
+                if (!pokemon)
+                    return res.status(404).json({ message: `${pokemonType} does not exists in our DB` });
                 return res.status(200).json(pokemon);
             }
             catch (e) {

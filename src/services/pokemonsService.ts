@@ -10,10 +10,13 @@ export default class pokemonsService {
     return pokemons as IPokemons[]
   }
 
-  public async getOnePokemon(pokemon: any): Promise<IPokemons> {
-    const name = pokemon;
-
-    const onePokemon = await pokemonModel.findOne({ where: { Name: {[Op.like]: name }}})
+  public async getPokemonByName(pokemon: string): Promise<IPokemons> {
+    const onePokemon = await pokemonModel.findOne({ where: { Name: {[Op.like]: pokemon }}})
     return onePokemon as IPokemons
+  }
+
+  public async getPokemonByType(pokemon: string): Promise<IPokemons[]>{
+    const pokemonTypes = await pokemonModel.findAll({ where: { Type_1: {[Op.like]: pokemon }}})
+    return pokemonTypes as IPokemons[]
   }
 }
