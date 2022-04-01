@@ -30,8 +30,8 @@ class pokemonsService {
     }
     getPokemonByType(pokemon) {
         return __awaiter(this, void 0, void 0, function* () {
-            const onePokemon = yield pokemonModel_1.default.findAll({ where: { Type_1: { [sequelize_1.Op.like]: pokemon } } });
-            return onePokemon;
+            const pokemonTypes = yield pokemonModel_1.default.findAll({ where: { Type_1: { [sequelize_1.Op.like]: pokemon } } });
+            return pokemonTypes;
         });
     }
 }
