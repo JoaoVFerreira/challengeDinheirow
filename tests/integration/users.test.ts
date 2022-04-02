@@ -20,7 +20,7 @@ chai.use(chaiHttp)
 
 const { expect } = chai;
 
-describe.skip('POST/register new user', () => {
+describe('POST/register new user', () => {
   let chaiHttpResponse: Response
 
   before(async () => {
@@ -72,11 +72,11 @@ describe.skip('POST/register new user', () => {
   });
 });
 
-describe.skip('POST/login user', () => {
+describe('POST/login user', () => {
   let chaiHttpResponse: Response
 
   before(async () => {
-    sinon.stub(userModel, 'findOne').resolves(loginUser.email as any);
+    sinon.stub(userModel, 'findOne').resolves(loginUser as any);
   });
 
   after(() => {

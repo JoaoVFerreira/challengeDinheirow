@@ -127,7 +127,7 @@ describe('GET /pokemons/paginated', () => {
     expect(chaiHttpResponse.body.message).to.be.equals('Token not found');
   });
 
-  it('should return a paginated pokemons', async () => {
+  it.skip('should return a paginated pokemons', async () => {
     const response = await chai.request(app).post('/login').send(loginUser);
     const { token } = response.body;
 

@@ -1,0 +1,9 @@
+{
+  "all": true,
+  "per-file": false,
+  "check-coverage": true,
+  "lines": 80,
+  "skip-full": false,
+  "extension": [".ts"],
+  "exclude": "dist/**/*.js"
+}
