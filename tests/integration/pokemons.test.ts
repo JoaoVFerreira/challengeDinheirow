@@ -36,7 +36,7 @@ describe('GET /pokemons', () => {
     const { token } = response.body;
 
     chaiHttpResponse = await chai.request(app).get('/pokemons')
-    .set('Authorization', token);
+    .set('authorization', token);
 
     expect(chaiHttpResponse).to.have.status(200);
     expect(chaiHttpResponse.body).to.be.an('array');
