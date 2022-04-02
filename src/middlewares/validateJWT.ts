@@ -1,6 +1,5 @@
 require('dotenv').config();
 import { NextFunction, Response } from "express";
-import RequestJWT from "../interfaces/requestJWT";
 import userModel from "../database/models/userModel";
 
 const jwt = require('jsonwebtoken');

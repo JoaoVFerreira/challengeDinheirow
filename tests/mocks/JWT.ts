@@ -1,0 +1,3 @@
+const mockJWToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvYW92dGYzOUBnbWFpbC5jb20iLCJpYXQiOjE2NDg4MTk2MzcsImV4cCI6MTY0ODgyMzIzN30.lM1CqRyQfOJLwrartwJXB6AoVlOmv-3h2gAykginevM';
+
+export default mockJWToken;
