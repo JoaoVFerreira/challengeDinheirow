@@ -8,6 +8,4 @@ app.listen(PORT, () => console.log(
   `Server is running on ${PORT}`,
 ));
 
-
-// test
 // BONUS => DOCKER, CI/CD, LIMITER

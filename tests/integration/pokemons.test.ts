@@ -134,8 +134,6 @@ describe('GET /pokemons/paginated', () => {
     chaiHttpResponse = await chai.request(app).get('/pokemons?page=3&limit=5')
     .set('Authorization', token);
 
-    console.log(chaiHttpResponse.body);
-    
     expect(chaiHttpResponse).to.have.status(200);
     expect(chaiHttpResponse.body).to.be.an('array');
     expect(chaiHttpResponse.body).to.be.deep.equals(paginatedPokemon);

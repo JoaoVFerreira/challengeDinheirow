@@ -16,8 +16,8 @@ export default class pokemonsController {
       const allPokemons = await this.pokemonsService.listAll();
 
       if (page && limit) {
-        const startIndex: number = (page - 1) * limit;
-        const endIndex: number = page * limit;
+        const startIndex: number = Number((page - 1) * limit);
+        const endIndex: number = Number(page * limit);
         const paginatedPokemons = allPokemons.slice(startIndex, endIndex);
         
         return res.status(200).json(paginatedPokemons);
