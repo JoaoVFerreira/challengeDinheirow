@@ -10,8 +10,6 @@ import { loginUser } from '../mocks/usersMocks';
 
 chai.use(chaiHttp)
 
-const token_GH = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1Y2Fzc3N0dmZAZ21haWwuY29tIiwiaWF0IjoxNjQ4OTMxNTQ1LCJleHAiOjE2NDg5MzUxNDV9.K3494jC8ui5IM9vhwYVIeGwcEGnCOERz882Pw3SxlxQ';
-
 const { expect } = chai;
 
 describe('GET /pokemons', () => {
@@ -35,10 +33,10 @@ describe('GET /pokemons', () => {
 
   it('should return all pokemons when not especify page and limit', async () => {
     const response = await chai.request(app).post('/login').send(loginUser);
-    // const { token } = response.body;
+    const { token } = response.body;
     
     chaiHttpResponse = await chai.request(app).get('/pokemons')
-    .set('authorization', token_GH);
+    .set('Authorization', token);
 
     expect(chaiHttpResponse).to.have.status(200);
     expect(chaiHttpResponse.body).to.be.an('array');
