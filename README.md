@@ -19,7 +19,7 @@ O objetivo foi construir uma API REST utilizando node.js, typescript e classes.
 
 ## Desafios
 
-- Implementar os testes em ts e sequelize, já havia trabalhado com testes antes, mas depois de tentar várias libs consegui realizar os testes e gerar um relatório de cobertura com o nyc. Atualmente os testes estão em 90%.
+- Implementar os testes em typescript e sequelize, já havia trabalhado com testes antes, mas depois de tentar várias libs consegui realizar os testes e gerar um relatório de cobertura com o nyc. Atualmente os testes estão em 90%.
 - Ainda não compreendi o porque as vezes os testes que rodam no GithubActions passa e outras vezes não.
 
 ## Melhorias
