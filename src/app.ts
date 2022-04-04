@@ -1,9 +1,5 @@
 import express from 'express';
 
-import swaggerUi from 'swagger-ui-express';
-
-import swaggerFile from './swagger.json';
-
 import cors from 'cors';
 
 import pokemonsRouter from './routes/pokemonsRoute';
@@ -19,8 +15,6 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
-
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.use('/pokemons', pokemonsRouter)
 

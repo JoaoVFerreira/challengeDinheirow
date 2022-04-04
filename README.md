@@ -19,8 +19,8 @@ O objetivo foi construir uma API REST utilizando node.js, typescript e classes.
 
 ## Desafios
 
-- Como implementar os testes em ts e sequelize, já havia trabalhado com testes antes, mas depois de tentar várias libs consegui realizar os testes e gerar um relatório de cobertura com o nyc. Atualmente os testes estão em 90%.
-- Ainda não compreendi ainda porque as vezes os testes que rodam no GithubActions passa e outras vezes não.
+- Implementar os testes em ts e sequelize, já havia trabalhado com testes antes, mas depois de tentar várias libs consegui realizar os testes e gerar um relatório de cobertura com o nyc. Atualmente os testes estão em 90%.
+- Ainda não compreendi o porque as vezes os testes que rodam no GithubActions passa e outras vezes não.
 
 ## Melhorias
 
@@ -28,7 +28,7 @@ O objetivo foi construir uma API REST utilizando node.js, typescript e classes.
 
 ## Deploy App
 
-- Observações: Para acessar as rotas voce precisa estar autenticado caso contrário a API irá te retornar error token not found. Para isso você pode fazer o seu cadastro pelo insomnia ou postman na rota /register.
+- Observações: Para acessar as rotas você precisa estar autenticado caso contrário a API irá te retornar error token not found. Para isso você pode fazer o seu cadastro pelo insomnia ou postman na rota /register.
 
     [Acesse a aplicação aqui!](https://challenge-dinheirow-joao.herokuapp.com/pokemons)
 
