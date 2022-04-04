@@ -1,0 +1,68 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API dinheirow Pokemons",
+    "description": "API criada para o desafio técnico back-end node.js na Dinheirow",
+    "contact": {
+      "email": "joaovtf39@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "Cadastrar usuário",
+        "description": "Esta rota será responsável por cadastras novos usuários e permitir o acesso aos outros endpoints da API",
+        "tags": ["Register"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewUser"
+              },
+              "examples": {
+                "newuser": {
+                  "value": {
+                    "name": "JhonMacGyver",
+                    "email": "joaodev@gmail.com",
+                    "password": "batatinha123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvYW92dGYzOUBnbWFpbC5jb20iLCJpYXQiOjE2NDkwMDQ2ODUsImV4cCI6MTY0OTAwODI4NX0.N5baiPgdPOvJAahpC5lp3fKbrwIsBUob9KBWQYtpN9w"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NewUser": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type":"string"
+          }
+        }
+      }
+    }
+  }
+}
